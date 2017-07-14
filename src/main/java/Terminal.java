@@ -122,6 +122,43 @@ public class Terminal extends JPanel {
     }
 
     private void editEmployee() {
+        if (empId.getText() == null || empId.getText().isEmpty()) {
+            Main.getMainInstance().setStatus("Specify employee id");
+            return;
+        }
 
+        Employee data = new Employee();
+        if (notEmpty(employeeName)) {
+            data.setEname(employeeName.getText());
+        }
+
+        if (notEmpty(employeeDept)) {
+            data.setDeptno(Long.parseLong(employeeDept.getText()));
+        }
+
+        // do for other attributes
+
+        ServiceGenerator.createService(RestEndpoint.class)
+                .editEmployee(data, Long.parseLong(empId.getText()))
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            Main.getMainInstance().setStatus("Edited employee successfully!");
+                        }
+                        else {
+                            Main.getMainInstance().setStatus("Couldn't edit employee");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Main.getMainInstance().setStatus("Retry");
+                    }
+                });
+    }
+
+    private boolean notEmpty(JTextField field) {
+        return field.getText() != null && !field.getText().isEmpty();
     }
 }
