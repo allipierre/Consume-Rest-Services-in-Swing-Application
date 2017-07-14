@@ -1,12 +1,17 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Console extends JPanel {
-    JTextPane textPane;
+    JTextArea textPane;
 
     public Console() {
-        textPane = new JTextPane();
-        add(textPane);
+        textPane = new JTextArea();
+        textPane.setColumns(50);
+        textPane.setRows(35);
+        JScrollPane scrollPane = new JScrollPane(textPane);
+        scrollPane.setPreferredSize(new Dimension(600, 400));
+        add(scrollPane);
     }
 
     public void updateConsole() {

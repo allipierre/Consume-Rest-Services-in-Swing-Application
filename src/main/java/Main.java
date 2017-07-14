@@ -4,17 +4,17 @@ import java.awt.*;
 public class Main extends JFrame {
     private static final int WINDOW_WIDTH = 800;
     private static final int WINDOW_HEIGHT = 500;
-
+    private static Main main;
     Console console;
     Ball ball;
     Terminal terminal;
-
-    private static Main main;
+    JLabel status;
 
     private Main() {
         console = new Console();
         ball = new Ball();
         terminal = new Terminal();
+        status = new JLabel();
 
         setTitle("Rest Demo");
 
@@ -24,6 +24,7 @@ public class Main extends JFrame {
         setMaximumSize(windowSize);
 
         setLayout(new BorderLayout());
+        add(status, BorderLayout.PAGE_START);
         add(console, BorderLayout.CENTER);
         add(ball, BorderLayout.LINE_END);
         add(terminal, BorderLayout.PAGE_END);
@@ -49,5 +50,9 @@ public class Main extends JFrame {
 
     public void clearConsole() {
         console.clear();
+    }
+
+    public void setStatus(String st) {
+        status.setText(st);
     }
 }

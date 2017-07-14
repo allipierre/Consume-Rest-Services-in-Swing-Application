@@ -10,16 +10,16 @@ public class EmployeesData {
     private ArrayList<Employee> employees;
     private int page = 0;
 
+    private EmployeesData() {
+        employees = new ArrayList<>();
+    }
+
     public static EmployeesData getInstance() {
         if (instance == null) {
             instance = new EmployeesData();
         }
 
         return instance;
-    }
-
-    private EmployeesData() {
-        employees = new ArrayList<>();
     }
 
     public ArrayList<Employee> getEmployees() {
@@ -38,7 +38,6 @@ public class EmployeesData {
                     @Override
                     public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
                         if (response.isSuccessful()) {
-                            System.out.println(response.body().getItems().toString());
                             employees.addAll(response.body().getItems());
                             Main.getMainInstance().updateConsole();
                             page++;

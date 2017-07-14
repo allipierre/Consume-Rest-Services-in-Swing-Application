@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @SuppressWarnings("unused")
 public class ServiceGenerator {
 
-    private static final String API_BASE_URL = "https://apex.oracle.com/pls/apex/freddie/hr/";
+    private static final String API_BASE_URL = "https://apex.oracle.com/pls/apex/pierrealli/hr/";
 
     private static OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
 
