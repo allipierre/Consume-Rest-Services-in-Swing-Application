@@ -1,4 +1,10 @@
+package application;
 import javax.swing.*;
+
+import View.Ball;
+import View.Console;
+import View.Terminal;
+
 import java.awt.*;
 
 public class Main extends JFrame {

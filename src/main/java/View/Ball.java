@@ -1,4 +1,9 @@
+package View;
 import javax.swing.*;
+
+import application.Main;
+import modell.EmployeesData;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +29,14 @@ public class Ball extends JPanel {
                 clearMainConsole();
             }
         });
+        
+        JButton btnNewButton = new JButton("Data");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		getNextListById();
+        	}
+        });
+        add(btnNewButton);
         add(clearConsole);
     }
 
@@ -34,5 +47,9 @@ public class Ball extends JPanel {
 
     private void getNextList() {
         EmployeesData.getInstance().fetchNext();
+    }
+    
+    private void getNextListById() {
+        EmployeesData.getInstance().fetchNextById();
     }
 }
