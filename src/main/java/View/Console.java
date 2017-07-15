@@ -32,6 +32,7 @@ public class Console extends JPanel {
         for (Employee employee : employees) {
             builder.append(employee.toString());
             table.setModel(model);
+            table.setModel(model);
             builder.append("\n");
         }
 
