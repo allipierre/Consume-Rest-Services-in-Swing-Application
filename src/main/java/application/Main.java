@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Main extends JFrame {
     private static final int WINDOW_WIDTH = 800;
-    private static final int WINDOW_HEIGHT = 500;
+    private static final int WINDOW_HEIGHT = 700;
     private static Main main;
     Console console;
     Ball ball;

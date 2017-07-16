@@ -1,5 +1,7 @@
 package Repository;
 
+import java.util.List;
+
 import modell.Employee;
 import modell.EmployeesData;
 import retrofit2.Call;
@@ -9,6 +11,9 @@ public interface RestEndpoint {
 
 	@GET("employees/")
 	Call<EmployeesData.DataResponse> getEmployees();
+	
+	@GET("employees/")
+	Call<List<Employee>> getEmployeess();
 
 	@POST("employees/")
 	Call<Void> addEmployee(@Body Employee employee);

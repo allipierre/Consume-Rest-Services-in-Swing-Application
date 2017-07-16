@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Repository.RestEndpoint;
 import Service.ServiceGenerator;
+import View.JframeItems;
 import View.Terminal;
 import application.Main;
 
@@ -59,8 +60,8 @@ public class EmployeesData {
 			Main.getMainInstance().setStatus("Specify employee id");
 			return;
 		}
-		ServiceGenerator.createService(RestEndpoint.class).GetEmployeeById(Long.parseLong(Terminal.getEmpId().getText()))
-				.enqueue(new Callback<DataResponse>() {
+		ServiceGenerator.createService(RestEndpoint.class)
+				.GetEmployeeById(Long.parseLong(Terminal.getEmpId().getText())).enqueue(new Callback<DataResponse>() {
 					@Override
 					public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
 						if (response.isSuccessful()) {
@@ -77,6 +78,26 @@ public class EmployeesData {
 						Main.getMainInstance().setStatus("Retry!");
 					}
 				});
+
+	}
+
+	public ArrayList<Employee> fetchNexts() {
+
+		ServiceGenerator.createService(RestEndpoint.class).getEmployees().enqueue(new Callback<DataResponse>() {
+			@Override
+			public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+				if (response.isSuccessful()) {
+					employees.addAll(response.body().getItems());
+
+				}
+			}
+
+			@Override
+			public void onFailure(Call<DataResponse> call, Throwable t) {
+
+			}
+		});
+		return employees;
 	}
 
 	public class DataResponse {
